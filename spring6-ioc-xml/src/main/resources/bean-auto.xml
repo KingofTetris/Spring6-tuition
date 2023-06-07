@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--注意类名都是实现类Impl,不是接口全类名,因为接口不能实例化-->
+<!--    autowire="byType" 根据类型自动DI-->
+    <!--    byType 如果找不到对应的类型 那就赋值为null
+            如果有多个类型，比如一个接口有多个实现类，就会报不知道选哪个的错误-->
+<!--    <bean id="userController" class="com.atguigu.spring6.iocxml.auto.controller.UserController"-->
+<!--    autowire="byType"-->
+<!--    ></bean>-->
+
+<!--    <bean id="userService" class="com.atguigu.spring6.iocxml.auto.service.UserServiceImpl"-->
+<!--          autowire="byType"-->
+<!--    ></bean>-->
+
+<!--    <bean id="uesrDao" class="com.atguigu.spring6.iocxml.auto.dao.UserDaoImpl"></bean>-->
+
+
+    <!--byName要保证要注入的属性名和要引用的bean的id一致
+        所以最好直接复制，不要自己拼写-->
+    <bean id="userController" class="com.atguigu.spring6.iocxml.auto.controller.UserController"
+          autowire="byName"
+    ></bean>
+
+    <bean id="userService" class="com.atguigu.spring6.iocxml.auto.service.UserServiceImpl"
+          autowire="byName"
+    ></bean>
+
+    <bean id="userDao" class="com.atguigu.spring6.iocxml.auto.dao.UserDaoImpl"></bean>
+
+
+</beans>

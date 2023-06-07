@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!--开启组件扫描，让Spring认识注解-->
+    <context:component-scan base-package="com.atguigu"></context:component-scan>
+
+    <!--引入外部属性文件，创建数据源对象-->
+    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+
+    <!--xml注入-->
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <!--driveClassName-->
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+    </bean>
+
+    <!--创建jdbcTemplate,注入数据源-->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <!--外部bean-->
+        <property name="dataSource" ref="druidDataSource"></property>
+    </bean>
+
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druidDataSource"></property>
+    </bean>
+
+    <!--开启事务注解，让事务管理器知道要去管谁
+      @Transaction所标识的方法或类中的方法都会被标记成事务。也就遵循ACID特性
+    -->
+    <!--如果你的事务管理器就叫transactionManager就和默认一致，那么可以不写-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--用xml实现事务增强（通知）代替@Transactional的效果，设置通知的规则-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <!--表示对get开头的方法进行事务增强-->
+            <tx:method name="get*" read-only="true"/>
+            <!--表示对update开头的方法进行事务增强-->
+            <tx:method name="update*"  timeout="5" propagation="REQUIRED"></tx:method>
+            <tx:method name="buy*"></tx:method>
+        </tx:attributes>
+    </tx:advice>
+    
+    <!--配置切入点和通知使用方法 白话就是对哪些类的哪些方法进行增强，通知-->
+    <aop:config>
+        <!--切入点表达式，下面表示对com.atguigu.spring6.tx.service包下的任何类的任何方法进行增强
+        因为其实就只有service包下的类是进行业务逻辑处理的-->
+        <aop:pointcut id="pt" expression="execution(* com.atguigu.spring6.tx.service.*(..))"/>
+        <!--设置通知规则是谁，用在哪里-->
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pt"></aop:advisor>
+    </aop:config>
+</beans>

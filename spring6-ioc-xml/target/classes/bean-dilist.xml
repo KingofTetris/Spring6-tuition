@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="emp1" class="com.atguigu.spring6.iocxml.ditest.Emp">
+        <property name="ename" value="tom"></property>
+        <property name="age" value="18"></property>
+
+<!--        <property name="dept" ref="dept"></property>-->
+        <!--数组类型-->
+        <property name="hobbies">
+            <array>
+                <value>吃饭</value>
+                <value>睡觉</value>
+                <value>敲代码</value>
+            </array>
+        </property>
+    </bean>
+
+    <bean id="emp2" class="com.atguigu.spring6.iocxml.ditest.Emp">
+        <property name="ename" value="lucy"></property>
+        <property name="age" value="22"></property>
+<!--        <property name="dept" ref="dept"></property>-->
+        <!--数组类型-->
+        <property name="hobbies">
+            <array>
+                <value>唱</value>
+                <value>跳</value>
+                <value>篮球</value>
+            </array>
+        </property>
+    </bean>
+
+    <!--注入list-->
+    <!--其实这样注入，并没有指定emp1,2的部门dname到底是谁-->
+    <!--如果在emp里面也注入dname 再引用外部bean dept就会形成闭环，就无限引用了-->
+    <!--所以外部bean的使用，要小心形成闭环引用-->
+    <bean id="dept" class="com.atguigu.spring6.iocxml.ditest.Dept">
+        <property name="dname" value="技术部"></property>
+        <property name="emps">
+            <list>
+                <ref bean="emp1"></ref>
+                <ref bean="emp2"></ref>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

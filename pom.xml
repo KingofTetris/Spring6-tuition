@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.atguigu</groupId>
+    <artifactId>spring6</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>spring-first</module>
+        <module>spring6-ioc-xml</module>
+        <module>spring6-ioc-annotation</module>
+        <module>atguigu-spring</module>
+        <module>spring6-aop</module>
+        <module>spring6-junit</module>
+        <module>spring-jdbc-tx</module>
+        <module>spring6-resource</module>
+        <module>spring6-validator</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <!--spring context依赖-->
+            <!--当你引入spring context依赖后，表示将Spring的基础依赖引入-->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+
+        <!--spring aop-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+        <!--spring aspects-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+
+        <!--测试类-->
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.8.2</version>
+            <!--            <scope>test</scope>-->
+        </dependency>
+
+        <!--日志 日志的作业就是查看项目的运行情况，快速定位出错，日志信息的优先级用的比较多的是info,error-->
+        <!--log4j2配置文件名固定为log4j2.xml,它必须放到类根路径下-->
+        <!--log4j2-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>2.19.0</version>
+        </dependency>
+
+        <!--低于JDK8,高于JDK11 想用@Resource还得加上这么个包。真难顶-->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+
+        <!--spring整合junit-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>6.0.2</version>
+        </dependency>
+
+        <!--junit5-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.0</version>
+        </dependency>
+
+        <!--junit4-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

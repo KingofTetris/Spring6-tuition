@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
+<!--    &lt;!&ndash;开启组件扫描，让Spring认识注解&ndash;&gt;-->
+<!--    <context:component-scan base-package="com.atguigu"></context:component-scan>-->
+
+<!--    &lt;!&ndash;引入外部属性文件，创建数据源对象&ndash;&gt;-->
+<!--    <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>-->
+
+<!--    &lt;!&ndash;xml注入&ndash;&gt;-->
+<!--    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">-->
+<!--        <property name="username" value="${jdbc.user}"></property>-->
+<!--        <property name="password" value="${jdbc.password}"></property>-->
+<!--        <property name="url" value="${jdbc.url}"></property>-->
+<!--        &lt;!&ndash;driveClassName&ndash;&gt;-->
+<!--        <property name="driverClassName" value="${jdbc.driver}"></property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;创建jdbcTemplate,注入数据源&ndash;&gt;-->
+<!--    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">-->
+<!--        &lt;!&ndash;外部bean&ndash;&gt;-->
+<!--        <property name="dataSource" ref="druidDataSource"></property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;事务管理器&ndash;&gt;-->
+<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="druidDataSource"></property>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;开启事务注解，让事务管理器知道要去管谁-->
+<!--      @Transaction所标识的方法或类中的方法都会被标记成事务。也就遵循ACID特性-->
+<!--    &ndash;&gt;-->
+<!--    &lt;!&ndash;如果你的事务管理器就叫transactionManager就和默认一致，那么可以不写&ndash;&gt;-->
+<!--    <tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+</beans>

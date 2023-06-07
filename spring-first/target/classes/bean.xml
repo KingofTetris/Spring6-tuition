@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--上面就是一些约束，规定你能写什么东西-->
+
+    <!--对象创建
+    bean标签
+    id：唯一标识
+    class：要创建的对象所属类的全类名
+    底层原理就是拿着全类名去做反射
+    -->
+    <bean id="user" class="com.atguigu.spring6.User"></bean>
+</beans>

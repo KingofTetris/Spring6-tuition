@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--对象创建
+   bean标签
+   id：唯一标识
+   class：要创建的对象所属类的全类名
+   底层原理就是拿着全类名去做反射
+   -->
+    <bean id="user" class="com.atguigu.spring6.iocxml.User"></bean>
+
+    <!--当有两个同类型的对象的时候，就不能直接用类型获取对象，只能用id或者id+类型-->
+    <bean id="user1" class="com.atguigu.spring6.iocxml.User"></bean>
+
+    <!--从接口获取类 接口肯定不能new，所有你得找到实现类-->
+    <bean id="userDaoImpl" class="com.atguigu.spring6.iocxml.bean.UserDaoImpl"></bean>
+
+    <bean id="personDaoImpl" class="com.atguigu.spring6.iocxml.bean.PersonDaoImpl"></bean>
+
+    <!--用-->
+</beans>

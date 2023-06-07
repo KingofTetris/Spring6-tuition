@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+     <bean id="student" class="com.atguigu.spring6.iocxml.dimap.Student">
+         <property name="sid" value="120"></property>
+         <property name="sname" value="张三"></property>
+         <property name="teacherMap">
+             <!--map就麻烦一点，要配上entry,<K,V>-->
+             <map>
+                 <entry>
+                     <key>
+                         <value>10010</value>
+                     </key>
+                     <ref bean="teacher1"></ref>
+                 </entry>
+
+                 <entry>
+                     <key>
+                         <value>13331</value>
+                     </key>
+                     <ref bean="teacher2"></ref>
+                 </entry>
+
+             </map>
+         </property>
+     </bean>
+    <bean id="teacher1" class="com.atguigu.spring6.iocxml.dimap.Teacher">
+        <property name="tid" value="100"></property>
+        <property name="tname" value="西门"></property>
+    </bean>
+    <bean id="teacher2" class="com.atguigu.spring6.iocxml.dimap.Teacher">
+        <property name="tid" value="10033"></property>
+        <property name="tname" value="吹雪"></property>
+    </bean>
+</beans>

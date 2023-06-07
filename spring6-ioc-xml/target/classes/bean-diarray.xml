@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--容器注入-->
+    <bean id="dept" class="com.atguigu.spring6.iocxml.ditest.Dept">
+        <property name="dname" value="人事部"></property>
+    </bean>
+
+    <bean id="emp" class="com.atguigu.spring6.iocxml.ditest.Emp">
+        <property name="ename" value="tom"></property>
+        <property name="age" value="18"></property>
+        <property name="dept" ref="dept"></property>
+
+        <!--数组类型-->
+        <property name="hobbies">
+            <array>
+                <value>吃饭</value>
+                <value>睡觉</value>
+                <value>敲代码</value>
+            </array>
+        </property>
+    </bean>
+</beans>

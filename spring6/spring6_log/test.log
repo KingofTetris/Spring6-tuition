@@ -1,0 +1,2 @@
+2023-05-26 18:03:46.447 DEBUG org.springframework.context.support.AbstractApplicationContext 630 prepareRefresh - Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@17a1e4ca
+2023-05-26 18:03:46.538 DEBUG org.springframework.beans.factory.xml.XmlBeanDefinitionReader 393 doLoadBeanDefinitions - Loaded 1 bean definitions from class path resource [bean-scope.xml]

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--bean通过scope属性配置bean为单实例(默认) ioc容器初始化时就创建。
+    或者多实例  getBean才创建
+    就是饿汉式和懒汉式
+    -->
+<!--    <bean id="orders" class="com.atguigu.spring6.iocxml.scope.Orders" scope="singleton"></bean>-->
+    <bean id="orders" class="com.atguigu.spring6.iocxml.scope.Orders" scope="prototype"></bean>
+</beans>

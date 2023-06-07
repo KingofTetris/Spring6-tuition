@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--开启组件扫描，让Spring认识注解-->
+    <context:component-scan base-package="com.atguigu.spring6.aop.xmlaop"></context:component-scan>
+
+    <!--使用xml配置切面-->
+    <aop:config>
+        <!--配置切面类-->
+        <!--ref指定切面类，首字母小写-->
+        <aop:aspect ref="logAspect">
+            <!--配置切入点-->
+            <aop:pointcut id="pointCut" expression="execution(* com.atguigu.spring6.aop.xmlaop.*.*(..))"/>
+            <!--配置通知类型-->
+            <!--前置-->
+            <aop:before method="beforeMethod" pointcut-ref="pointCut"></aop:before>
+            <!--后置-->
+            <aop:after method="afterMethod" pointcut-ref="pointCut"></aop:after>
+            <!--下面两个比较特殊 returning和throwing别忘了配，而且要和方法中一致-->
+            <aop:after-returning method="afterReturningMethod" returning="result" pointcut-ref="pointCut" ></aop:after-returning>
+            <aop:after-throwing method="afterThrowingMethod" throwing="ex" pointcut-ref="pointCut" ></aop:after-throwing>
+
+            <!--环绕-->
+            <aop:around method="aroundMethod" pointcut-ref="pointCut"></aop:around>
+
+        </aop:aspect>
+    </aop:config>
+</beans>
